@@ -1,7 +1,7 @@
 import sys
 import threading
 import configparser
-from os import environ, path
+from os import environ, path, makedirs
 from time import sleep
 from PyQt5.QtGui import *
 from PyQt5.QtWidgets import *
@@ -14,13 +14,12 @@ config_folder = path.join(path.join(environ['HOME'], ".config/pomo/"))
 config_file = path.join(config_folder, "pomo.ini")
 config = configparser.ConfigParser(strict=False)
 if not path.exists(config_file):
-    
     config['DEFAULT'] = {'pomo_time' : 25,
                          'break_time' : 5,
                          'long_break' : 4,
                          'long_break_time' : 30}
 
-    config_folder.mkdir(parents=True)
+    makedirs(config_folder)
     with open(config_file, 'w') as f:
         config.write(f)
 else:

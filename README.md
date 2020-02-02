@@ -8,6 +8,7 @@ Currently tested on:
 - Ubuntu MATE 18.04
 
 ### Depenancies
+- [python3](https://docs.python.org/3/)
 - [pyqt5](https://www.riverbankcomputing.com/software/pyqt/intro)
 - [pynotifier](https://github.com/YuriyLisovskiy/pynotifier)
 
