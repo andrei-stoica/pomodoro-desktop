@@ -45,6 +45,7 @@ def end_pomo():
     global started, counter
     counter+=1 
     started = False
+    tray.setIcon(QIcon("icons/Stop.png"))
     if counter % long_break == 0:
         notify(f"Take a break for {long_break_time} minutes.",
             title='LONG BREAK') 
@@ -55,6 +56,7 @@ def end_pomo():
         sleep(break_time * 60)
 
     if not started:
+        tray.setIcon(QIcon("icons/Wait.png"))
         notify("You should probably get back to work")
 
 def start():
@@ -62,6 +64,7 @@ def start():
     if not started:
         if pomo_timer:
             pomo_timer.cancel()
+        tray.setIcon(QIcon("icons/Go.png"))
         started = True
         notify(f"You got {pomo_time} minutes to work.", title='WORK')
         pomo_timer = threading.Timer(pomo_time * 60, end_pomo)
@@ -70,8 +73,10 @@ def start():
         notify("Already in the middle of a pomodoro.")
 
 def stop_work():
-    global pomo_timer
+    global pomo_timer, started
     if pomo_timer:
+        started = False
+        tray.setIcon(QIcon("icons/Wait.png"))
         pomo_timer.cancel()
         if started:
             notify("Alright take your unscheduled break...")
@@ -83,7 +88,7 @@ def quit():
 
 
 # Create the icon
-icon = QIcon("")
+icon = QIcon("icons/Wait.png")
 
 # Create the tray
 tray = QSystemTrayIcon()

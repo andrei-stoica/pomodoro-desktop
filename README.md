@@ -6,6 +6,7 @@ Theoreticaly this should work on all platforms. Although currently it only uses
 
 Currently tested on:
 - Ubuntu MATE 18.04
+- Arch Linux
 
 ### Depenancies
 - [python3](https://docs.python.org/3/)
