@@ -29,8 +29,6 @@ else:
 icons = {icon : path.join(sys.path[0], '../icons', icon + '.png')
             for icon in ['Go', 'Wait', 'Stop']}
 
-print(icons)
-
 pomo_time = config.getint('DEFAULT','pomo_time') 
 break_time = config.getint('DEFAULT','break_time')
 long_break = config.getint('DEFAULT','long_break')
@@ -88,7 +86,8 @@ def stop_work():
 
 def quit():
     global pomo_timer
-    pomo_timer.cancel()
+    if pomo_timer:
+        pomo_timer.cancel()
     app.quit()
 
 
